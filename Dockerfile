@@ -1,7 +1,4 @@
-FROM ruby:2.6.5
-
-# install a modern bundler version
-RUN gem install bundler
+FROM ruby:2.7
 
 ADD entrypoint.sh /entrypoint.sh
 

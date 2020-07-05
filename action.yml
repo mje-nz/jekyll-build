@@ -1,6 +1,6 @@
-name: Jekyll 4 Build & Deploy
-description: 'Builds & deploys a Jekyll 4.x site to gh-pages branch of the same repository.'
-branding: 
+name: Jekyll Build
+description: 'Builds a Jekyll site'
+branding:
   icon: 'package'
   color: 'orange'
 runs:
