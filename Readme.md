@@ -55,7 +55,7 @@ Optionally, you can pass extra arguments to `jekyll build`:
       - name: Build Jekyll site
         uses: mje-nz/jekyll-build@master
         with:
-          JEKYLL_ARGS: --config=_config_drafts.yml
+          jekyll_args: --config=_config_drafts.yml
 ```
 
 ### Caching

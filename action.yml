@@ -1,5 +1,9 @@
 name: Jekyll Build
 description: 'Builds a Jekyll site'
+inputs:
+  jekyll_args:
+    description: 'Extra arguments for jekyll build'
+    required: false
 branding:
   icon: 'package'
   color: 'orange'
