@@ -1,17 +1,21 @@
 ## Jekyll Build Action
 A GitHub Action for building a Jekyll site.
 
+
 ### Why?
-GitHub Pages supports Jekyll out of the box, but very few plugins are supported. If you are using anything but the most basic Jekyll setup, you're likely going to need another way to get your site into GitHub Pages.
+GitHub Pages supports Jekyll out of the box, but very few plugins are supported.
+If you are using anything but the most basic Jekyll setup, you're likely going to need another way to get your site into GitHub Pages.
+
 
 ### Prior Work
 This is based on [Josh Larsen's Jekyll 4 Deploy action](https://github.com/joshlarsen/jekyll4-deploy-gh-pages).
 
+
 ### Setup
-Create a `main.yml` file in `./github/workflows`.
+Create a `main.yml` file in `.github/workflows`.
 
 ```yaml
-name: Jekyll Deploy
+name: Jekyll Build
 
 on:
   push:
@@ -26,15 +30,16 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false  # required for JamesIves/github-pages-deploy-action
+
       - name: Bundler Cache
         uses: actions/cache@v2
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+
       - name: Build Jekyll site
         uses: mje-nz/jekyll-build@master
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.5.7
         with:
@@ -44,8 +49,18 @@ jobs:
 
 ```
 
+Optionally, you can pass extra arguments to `jekyll build`:
+
+```
+      - name: Build Jekyll site
+        uses: mje-nz/jekyll-build@master
+        with:
+          JEKYLL_ARGS: --config=_config_drafts.yml
+```
+
 ### Caching
-Bundler caching on a mostly vanilla Jekyll site reduces deploy time from 3-4 minutes down to less than 1 minute. The cached build step is reduced from ~3 minutes to ~12 seconds.
+Bundler caching on a mostly vanilla Jekyll site reduces deploy time from 3-4 minutes down to less than 1 minute.
+The cached build step is reduced from ~3 minutes to ~12 seconds.
 
 ![build without cache](img/build-no-cache.png)
 
